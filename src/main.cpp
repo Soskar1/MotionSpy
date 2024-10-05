@@ -1,18 +1,23 @@
 #include <Arduino.h>
+#include <SoftwareSerial.h>
+#include <stdlib.h>
+#include "ESP8266.h"
 
-// put function declarations here:
-int myFunction(int, int);
+Core::ESP8266 esp(2, 3);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  esp.begin(115200);
+
+  esp.send("AT");
+  delay(1000);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  while (esp.hasData()) {
+    String data = esp.read();
+    Serial.println(data);
+  }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  delay(1000);
 }
