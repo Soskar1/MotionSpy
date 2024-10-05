@@ -1,3 +1,0 @@
-[submodule "lib/ESP8266"]
-	path = lib/ESP8266
-	url = https://github.com/Hieromon/ESP8266.git
